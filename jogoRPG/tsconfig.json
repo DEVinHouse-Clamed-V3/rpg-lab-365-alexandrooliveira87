@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "NodeNext", // Corrigido para ser compatível com 'moduleResolution'
+    "moduleResolution": "NodeNext", // Para resolver os módulos adequadamente
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "baseUrl": "./",
+    "paths": {
+      "*": ["src/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
