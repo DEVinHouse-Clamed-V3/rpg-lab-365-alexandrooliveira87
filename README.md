@@ -23,44 +23,6 @@ Este é um jogo de RPG em terminal, desenvolvido em **TypeScript** com foco em c
 
 ## 🛠️ Estrutura do Projeto
 
-
-src/
-├── models/
-│   ├── Arma.ts           # Representa as armas do jogo.
-│   ├── Personagem.ts     # Base para o personagem principal e inimigos.
-│   ├── Inimigo.ts        # Classe para os inimigos comuns.
-│   ├── Chefe.ts          # Classe para o chefe final, com habilidades exclusivas.
-│   ├── Mapa.ts           # Classe para gerenciar os mapas do jogo.
-├── utils/
-│   ├── delay.ts          # Função para criar delays entre ações no terminal.
-├── main.ts               # Arquivo principal do jogo.
-
-
-README.md
-markdown
-Copiar código
-# Jogo RPG TypeScript
-
-## 📖 Descrição
-
-Este é um jogo de RPG em terminal, desenvolvido em **TypeScript** com foco em conceitos de **POO** (Programação Orientada a Objetos). O jogo apresenta mapas aleatórios, inimigos desafiadores e um chefe final com habilidades especiais, proporcionando uma experiência dinâmica e divertida.
-
-## 🚀 Funcionalidades
-
-- **Sistema de combate por turnos**:
-  - Ataques com chances de falha.
-  - Inimigos com comportamento aleatório.
-  - Chefe final com ataques mais fortes e habilidades especiais.
-
-- **Mapas aleatórios**:
-  - Cada jogo ocorre em um mapa sorteado, com características únicas.
-
-- **Personagens e equipamentos**:
-  - Personagem principal com armas equipáveis.
-  - Inimigos e chefe final desafiadores.
-
-## 🛠️ Estrutura do Projeto
-
 ```plaintext
 src/
 ├── models/
