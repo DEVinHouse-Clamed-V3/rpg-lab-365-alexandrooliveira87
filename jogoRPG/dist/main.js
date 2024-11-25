@@ -16,12 +16,22 @@ const chalk_1 = __importDefault(require("chalk"));
 const Arma_1 = __importDefault(require("./models/Arma"));
 const Personagem_1 = __importDefault(require("./models/Personagem"));
 const Inimigo_1 = __importDefault(require("./models/Inimigo"));
+const Chefe_1 = __importDefault(require("./models/Chefe"));
+const Mapa_1 = __importDefault(require("./models/Mapa"));
 const delay_1 = require("./utils/delay");
 function montarCenario() {
     return __awaiter(this, void 0, void 0, function* () {
         console.clear();
         console.log(chalk_1.default.blueBright(" 🌌  Bem-vindo ao Jogo RPG Typescript! 🌌\n"));
         yield (0, delay_1.delay)(1000);
+        console.log(chalk_1.default.yellowBright(" 🔧  Sorteando o mapa do jogo...\n"));
+        yield (0, delay_1.delay)(1500);
+        // Sorteando o mapa
+        const mapa = Mapa_1.default.sortearMapa();
+        console.log(chalk_1.default.greenBright(` 🗺️  Mapa sorteado:  ${mapa.getNome()}`));
+        console.log(chalk_1.default.cyanBright(` 📜  Descrição:  ${mapa.getDescricao()}`));
+        console.log(chalk_1.default.magentaBright(` ⚔️  Dificuldade:  ${mapa.getDificuldade()}\n`));
+        yield (0, delay_1.delay)(2000);
         console.log(chalk_1.default.yellowBright(" 🔧  Construindo seu Mapa...\n"));
         yield (0, delay_1.delay)(1500);
         // Criando armas
@@ -43,7 +53,6 @@ function montarCenario() {
             new Inimigo_1.default("💂 Rato Guerreiro", 80, 20, machado),
             new Inimigo_1.default("🧛 Vampiro Sombrio", 90, 25, null),
             new Inimigo_1.default("🐺 Lobisomem Furioso", 100, 30, null),
-            new Inimigo_1.default("🐉 Dragão Ancião", 200, 50, espada),
         ];
         console.log(chalk_1.default.redBright(" 👹  Inimigos criados:"));
         inimigos.forEach((inimigo, index) => {
@@ -51,12 +60,17 @@ function montarCenario() {
         });
         console.log();
         yield (0, delay_1.delay)(1500);
+        // Criando o chefe
+        const chefe = new Chefe_1.default("🐉 Dragão Ancião", 200, 50, "Explosão de Lava");
+        console.log(chalk_1.default.yellowBright("🌋  Um chefe poderoso aguarda no final:"));
+        console.log(`${chalk_1.default.redBright(chefe.getNome())} ( ❤️  Vida: ${chefe.getVida()}, 💪  Força: ${chefe.getForca()}, 🌟 Habilidade: ${chefe.getHabilidadeEspecial()})\n`);
+        yield (0, delay_1.delay)(1500);
         // Equipando uma arma no personagem principal
         console.log(chalk_1.default.yellowBright(`🔧  Equipando ${espada.getNome()} em ${jogador.getNome()}...`));
         jogador.equiparArma(espada);
         yield (0, delay_1.delay)(1500);
-        // Simulação de interação entre os objetos
-        console.log(chalk_1.default.blueBright("\n⚔️  Que a batalha comece! ⚔️\n"));
+        // Simulação de combate
+        console.log(chalk_1.default.blueBright("\n⚔️  Que a batalha comece no mapa sorteado! ⚔️\n"));
         yield (0, delay_1.delay)(1000);
         for (const inimigo of inimigos) {
             console.log(chalk_1.default.redBright(`🔥  Combate iniciado contra ${inimigo.getNome()}!`));
@@ -79,7 +93,27 @@ function montarCenario() {
                 yield (0, delay_1.delay)(1500);
             }
         }
-        console.log(chalk_1.default.greenBright("\n🏆  Parabéns! Você venceu todos os inimigos e se tornou o maior herói do reino!"));
+        // Combate contra o chefe
+        console.log(chalk_1.default.redBright(`🔥  O desafio final contra ${chefe.getNome()} começa agora! 🔥\n`));
+        yield (0, delay_1.delay)(1500);
+        while (jogador.getVida() > 0 && chefe.getVida() > 0) {
+            console.log(chalk_1.default.cyan(`🎯 Turno de ${jogador.getNome()}:`));
+            jogador.atacar(chefe);
+            if (chefe.getVida() <= 0) {
+                console.log(chalk_1.default.greenBright(`💥  ${chefe.getNome()} foi derrotado!`));
+                chefe.comportamentoEspecialAntesDeMorrer(jogador);
+                break;
+            }
+            console.log(chalk_1.default.cyan(`🎯 Turno de ${chefe.getNome()}:`));
+            chefe.atacar(jogador);
+            if (jogador.getVida() <= 0) {
+                console.log(chalk_1.default.redBright(`💀  ${jogador.getNome()} foi derrotado!`));
+                console.log(chalk_1.default.redBright("⚰️  Você foi derrotado. Fim de jogo."));
+                return;
+            }
+            yield (0, delay_1.delay)(1500);
+        }
+        console.log(chalk_1.default.greenBright(`\n🏆  Parabéns! Você venceu no mapa ${mapa.getNome()} e se tornou o maior herói do reino!`));
     });
 }
 montarCenario();
