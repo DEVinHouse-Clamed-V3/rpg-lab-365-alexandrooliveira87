@@ -38,6 +38,7 @@ export default class Chefe extends Inimigo {
       jogador.receberDano(50); // Dano fixo no jogador como ataque final
       console.log(`🔥 ${jogador.getNome()} recebeu 50 de dano do ataque final!`);
     } else {
+      
       console.log(`${this.getNome()} foi derrotado sem usar sua habilidade especial.`);
     }
   }
