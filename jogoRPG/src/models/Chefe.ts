@@ -4,6 +4,7 @@ import Personagem from "./Personagem";
 export default class Chefe extends Inimigo {
   private habilidadeEspecial: string;
 
+
   constructor(
     nome: string,
     vida: number,
@@ -13,6 +14,7 @@ export default class Chefe extends Inimigo {
     super(nome, vida, forca);
     this.habilidadeEspecial = habilidadeEspecial;
   }
+  
 
   public getHabilidadeEspecial(): string {
     return this.habilidadeEspecial;
