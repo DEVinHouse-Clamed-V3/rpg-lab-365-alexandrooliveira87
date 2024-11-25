@@ -84,15 +84,19 @@ Gerenciador de pacotes como npm ou yarn.
 #1 - Clone o repositório:
 
 git clone https://github.com/seu-usuario/jogo-rpg-typescript.git
+
 cd jogo-rpg-typescript
 
 #2 - Instale as dependências:
+
 npm install
 
 #3 - Compile o TypeScript:
+
 npx tsc
 
 #4 - Execute o jogo:
+
 npx ts-node src/main.ts
 
 ## Regras do Jogo
